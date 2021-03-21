@@ -1,38 +1,81 @@
 .App {
-  text-align: center;
+  display: flex;
+  overflow-x: hidden;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.left {
+  flex: 1 0 30%;
+  overflow: auto;
+  height: 100vh;
+  padding: 15px;
+
+  padding-bottom: 40px;
+  border-right: 1px solid #DBDBDB;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.right {
+  flex: 1 0 50%;
+  overflow: auto;
+  height: 100vh;
+  padding: 30px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.TaskView ~ .TaskView {
+  margin-top: 10px;
+}
+
+.Input {
+  display: flex;
+  margin-bottom: 30px;
+  padding: 0;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #DBDBDB;
+}
+
+.Input .Textarea {
+  flex: 0 0 70%;
+  margin-right: 10px;
+}
+
+.Input .Buttons {
+  flex: 0 0 20%;
+}
+
+.Input-Buttons {
   display: flex;
   flex-direction: column;
+}
+
+.Input-Buttons > * ~ * {
+  margin-top: 10px;
+}
+
+.Title {
+  /* border-bottom: 1px solid #DBDBDB; */
+}
+
+.right-Menu {
+  display: flex;
+  margin-top: 10px;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  margin-bottom: 30px;
 }
 
-.App-link {
-  color: #61dafb;
+.right-Menu > * ~ * {
+  margin-left: 30px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.Generated {
+  height: calc(100vh - 200px);
+}
+
+.MessageBox-Custom {
+  position: absolute;
+  bottom: 25px;
+  right: 25px;
+  z-index: 1000;
+}
+
+.Modal {
+  z-index: 20000;
 }

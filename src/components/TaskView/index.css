@@ -1,0 +1,13 @@
+.TaskView {
+    position: relative;
+}
+
+.TaskView-Delete {
+    position: absolute;
+    bottom: 20px;
+    right: 0;
+    z-index: 1000;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
