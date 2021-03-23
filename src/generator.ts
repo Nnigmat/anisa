@@ -4,22 +4,34 @@ const shuffle = (array: Array<any>) => {
     return [...array].sort(() => Math.random() - 0.5);
 }
 
-const allVariants: (i: number, cur: any, lengths: Array<number>) => Array<Array<number>> = (i = -1, cur, lengths: Array<number>) => {
+const flatten = (array: Array<any>, depth: number) => {
+    let result = array;
+    for (let i = 0; i < depth; i++) {
+        result = [...result].flat();
+    }
+
+    return result;
+}
+
+// @ts-ignore
+const allVariants = (lengths: Array<number>, i = -1, cur = [] as string[]) => {
+    const result = [] as Array<any>;
+
     if (lengths.length === 0) {
-        return [];
+        return result;
     }
 
     if (i + 1 >= lengths.length) {
-        return cur || [];
+        return cur;
     }
-    const res = Array(lengths[i + 1]).fill(1).map((_, index) => allVariants(i + 1, [...(cur || []), index], lengths));
-
-    if (i === 0) {
-      return res;
+    
+    const taskIds = Array(lengths[i + 1]).fill(1);
+    for (let [index, id] of Object.entries(taskIds)) {
+        result.push([...cur, index]);
     }
 
-    return res.reduce((acc, el) => [...acc, ...el], []);
-}
+    return result.map(el => allVariants(lengths, i + 1, el)) as Array<any>;
+};
 
 export const generate = (tasks: Array<Task>, amountVariants: number) => {
     if (tasks.length === 0 || amountVariants < 0) {
@@ -43,8 +55,9 @@ export const generate = (tasks: Array<Task>, amountVariants: number) => {
 
     // @ts-ignore
     const lengths = sortedKeys.map((key) => typesTasks[key].length);
-    const generatedVariants = allVariants(-1, null, lengths);
+    const generatedVariants = flatten(allVariants(lengths), lengths.length - 1);
 
+    console.log(generatedVariants);
 
     let sizedGeneratedVariants = [] as Array<Array<number>>;
     for (let i = 0; i < amountVariants / generatedVariants.length; i++) {
