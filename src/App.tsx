@@ -23,29 +23,49 @@ import { generate } from './generator';
 configureRootTheme({ theme })
 
 const MIN_VARIANTS_AMOUNT = 1;
+const TASKS = localStorage.getItem('tasks') ? JSON.parse(localStorage.getItem('tasks') || '') as Array<Task>: [] as Array<Task>;
+const CURRENT_TASK = localStorage.getItem('current_task') || '';
+const VARIANTS_AMOUNT = Number(localStorage.getItem('variants_amount')) || MIN_VARIANTS_AMOUNT;
+const GENERATOR_TYPE = localStorage.getItem('generator_type') || 'text';
+const TASK_TYPE = Number(localStorage.getItem('task_type')) || 1;
+const GENERATED_TEXT = localStorage.getItem('generated_text') || '';
 
 function App() {
   const scopeRef = useRef<HTMLDivElement>(null);
-  const [tasks, setTasks] = useState([] as Array<Task>);
-  const [variantsAmount, setVariantsAmount] = useState(MIN_VARIANTS_AMOUNT);
-  const [currentTask, setCurrentTask] = useState('');
-  const [generatorType, setGeneratorType] = useState('text');
-  const [taskType, setTaskType] = useState(1);
-  const [generatedText, setGeneratedText] = useState('');
+  const [tasks, setTasks] = useState(TASKS);
+  const [variantsAmount, setVariantsAmount] = useState(VARIANTS_AMOUNT);
+  const [currentTask, setCurrentTask] = useState(CURRENT_TASK);
+  const [generatorType, setGeneratorType] = useState(GENERATOR_TYPE);
+  const [taskType, setTaskType] = useState(TASK_TYPE);
+  const [generatedText, setGeneratedText] = useState(GENERATED_TEXT);
   const [messageBoxVisible, setMessageBoxVisible] = useState(false);
-  const [modalVisible, setModalVisible] = useState(false);
+  const [gifVisible, setGifVisible] = useState(false);
+  const [clearModalVisible, setClearModalVisible] = useState(false);
 
   useEffect(() => {
     const timerId = setTimeout(() => setMessageBoxVisible(true), 2000);
     return  () => clearTimeout(timerId);
   }, []);
 
+  const clear = () => {
+    setTasks([]);
+    setVariantsAmount(MIN_VARIANTS_AMOUNT);
+    setCurrentTask('');
+    setGeneratorType('text');
+    setTaskType(1);
+    setGeneratedText('');
+    localStorage.clear();
+  }
+
   const onCurrentTaskChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
     setCurrentTask(e.target.value);
+    localStorage.setItem('current_task', e.target.value);
   }
 
   const onGenerateClick = () => {
-    setGeneratedText(generate(tasks, variantsAmount));
+    const generatedText = generate(tasks, variantsAmount)
+    setGeneratedText(generatedText);
+    localStorage.setItem('generated_text', generatedText);
   }
 
   const addTask = () => {
@@ -53,20 +73,35 @@ function App() {
       return;
     }
 
-    setTasks(prev => [...prev, {
-      id: generateKey(currentTask),
-      content: currentTask,
-      type: taskType
-    }]);
+    setTasks(prev => {
+      const tasks = [...prev, {
+        id: generateKey(currentTask),
+        content: currentTask,
+        type: taskType
+      }];
+
+      localStorage.setItem('tasks', JSON.stringify(tasks))
+      return tasks;
+    });
     clearCurrentTask();
   };
 
   const handleTaskChange = (id: string, e: ChangeEvent<HTMLTextAreaElement>) => {
-    setTasks(prev => prev.map(task => task.id === id ? { ...task, content: e.target.value } : task));
+    setTasks(prev => {
+      const tasks = prev.map(task => task.id === id ? { ...task, content: e.target.value } : task)
+
+      localStorage.setItem('tasks', JSON.stringify(tasks))
+      return tasks;
+    });
   }
 
   const handleTaskTypeChange = (id: string, e: ChangeEvent<HTMLSelectElement>) => {
-    setTasks(prev => prev.map(task => task.id === id ? { ...task, type: Number(e.target.value) } : task));
+    setTasks(prev => {
+      const tasks = prev.map(task => task.id === id ? { ...task, type: Number(e.target.value) } : task)
+
+      localStorage.setItem('tasks', JSON.stringify(tasks))
+      return tasks;
+    });
   }
 
   const handleVariantsAmountChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -76,14 +111,21 @@ function App() {
     }
 
     setVariantsAmount(Number(e.target.value));
+    localStorage.setItem('variants_amount', e.target.value);
   }
 
   const deleteTask = (id: string) => {
-    setTasks(prev => prev.filter((task) => task.id !== id));
+    setTasks(prev => {
+      const tasks = prev.filter((task) => task.id !== id);
+
+      localStorage.setItem('tasks', JSON.stringify(tasks));
+      return tasks;
+    });
   };
 
   const clearCurrentTask = () => {
     setCurrentTask('');
+    localStorage.setItem('current_task', '');
   };
 
   const generatorTypes = [
@@ -106,7 +148,6 @@ function App() {
               placeholder="Задание"
               autoFocus={true}
               rows={5}
-
             /> 
             <div className="Input-Buttons">
               <Button
@@ -123,6 +164,13 @@ function App() {
                 onChange={(e) => setTaskType(e.target.value)}
                 options={taskTypes}
               />
+              <Button 
+                view="clear"
+                size="m"
+                onClick={() => setClearModalVisible(true)}
+              >
+                Очистить
+              </Button>
             </div>
           </div>
           {[...tasks].reverse().map((task) => (
@@ -190,7 +238,7 @@ function App() {
           size="m"
           actions={
               <>
-                <Button view="action" size="s" onClick={() => setModalVisible(true)}>
+                <Button view="action" size="s" onClick={() => setGifVisible(true)}>
                     Подробнее
                 </Button>
               </>
@@ -200,14 +248,47 @@ function App() {
           Специально для Анисы апы от Никиты. Ждем тебя в Иннополисе :)
         </MessageBox>
       )}
-      { modalVisible && (
+      { gifVisible && (
         <Modal
           theme="normal"
           scope={scopeRef}
-          visible={modalVisible}
-          onClose={() => setModalVisible(false)}
+          visible={gifVisible}
+          onClose={() => setGifVisible(false)}
         >
           <img src={meGif} alt="Author" />
+        </Modal>
+      )}
+      { clearModalVisible && (
+        <Modal
+          theme="normal"
+          scope={scopeRef}
+          visible={clearModalVisible}
+          onClose={() => setClearModalVisible(false)}
+        >
+          <div style={{ padding: 16, fontFamily: 'var(--control-font-family)', width: 400 }}>
+            <div style={{ marginBottom: 16 }}>
+              Вы уверены, что хотите полностью очистить данные?
+            </div>
+            <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                <Button 
+                  view="clear"
+                  size="m"
+                  onClick={() => setClearModalVisible(false)}
+                >
+                    Отменить
+                </Button>
+                <Button
+                  view="action"
+                  size="m"
+                  onClick={() => {
+                    clear();
+                    setClearModalVisible(false);
+                  }}
+                >
+                    Очистить
+                </Button>
+            </div>
+          </div>
         </Modal>
       )}
     </div>
