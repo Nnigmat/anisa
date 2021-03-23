@@ -57,8 +57,6 @@ export const generate = (tasks: Array<Task>, amountVariants: number) => {
     const lengths = sortedKeys.map((key) => typesTasks[key].length);
     const generatedVariants = flatten(allVariants(lengths), lengths.length - 1);
 
-    console.log(generatedVariants);
-
     let sizedGeneratedVariants = [] as Array<Array<number>>;
     for (let i = 0; i < amountVariants / generatedVariants.length; i++) {
         sizedGeneratedVariants = [...sizedGeneratedVariants, ...generatedVariants];

@@ -42,6 +42,3 @@ const idea = (lengths) => {
 
     return result;
 }
-
-// console.log(idea([2, 2, 2, 3]));
-console.log(flatten(allVariants([2, 2, 4]), 2));
