@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/anisa/static/css/main.6ceed2c2.chunk.css",
-    "main.js": "/anisa/static/js/main.15e5f604.chunk.js",
-    "main.js.map": "/anisa/static/js/main.15e5f604.chunk.js.map",
+    "main.js": "/anisa/static/js/main.ad2053f7.chunk.js",
+    "main.js.map": "/anisa/static/js/main.ad2053f7.chunk.js.map",
     "runtime-main.js": "/anisa/static/js/runtime-main.574a8da6.js",
     "runtime-main.js.map": "/anisa/static/js/runtime-main.574a8da6.js.map",
     "static/css/2.5720c2d5.chunk.css": "/anisa/static/css/2.5720c2d5.chunk.css",
@@ -27,6 +27,6 @@
     "static/css/2.5720c2d5.chunk.css",
     "static/js/2.699707a8.chunk.js",
     "static/css/main.6ceed2c2.chunk.css",
-    "static/js/main.15e5f604.chunk.js"
+    "static/js/main.ad2053f7.chunk.js"
   ]
 }
