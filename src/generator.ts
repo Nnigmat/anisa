@@ -61,8 +61,7 @@ export const generate = (tasks: Array<Task>, amountVariants: number) => {
     for (let i = 0; i < amountVariants / generatedVariants.length; i++) {
         sizedGeneratedVariants = [...sizedGeneratedVariants, ...generatedVariants];
     }
-    sizedGeneratedVariants = sizedGeneratedVariants.slice(0, amountVariants);
-    const shaffledVariants = shuffle(sizedGeneratedVariants);
+    const shaffledVariants = shuffle(sizedGeneratedVariants).slice(0, amountVariants);
 
     const mappedToText = shaffledVariants.map((el) => {
         // @ts-ignore
