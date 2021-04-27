@@ -79,3 +79,7 @@
 .Modal {
   z-index: 20000;
 }
+
+.Copy {
+  padding-top: 5px;
+}

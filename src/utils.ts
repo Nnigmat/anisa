@@ -1,20 +1,20 @@
-export function getRandomInt(min, max) {
+export function getRandomInt(min: number, max: number) {
     min = Math.ceil(min);
     max = Math.floor(max);
     return Math.floor(Math.random() * (max - min)) + min; //Максимум не включается, минимум включается
 }
 
-export const generateKey = (string, lower=0, upper=1000000) => {
+export const generateKey = (string: string, lower=0, upper=1000000) => {
     return MD5(string + String(getRandomInt(lower, upper)));
 }
 
-export const MD5 = function (string) {
+export const MD5 = function (string: string) {
 
-    function RotateLeft(lValue, iShiftBits) {
-            return (lValue<<iShiftBits) | (lValue>>>(32-iShiftBits));
+    function RotateLeft(lValue: number, iShiftBits: number) {
+        return (lValue<<iShiftBits) | (lValue>>>(32-iShiftBits)); 
     }
  
-    function AddUnsigned(lX,lY) {
+    function AddUnsigned(lX: number, lY: number) {
             var lX4,lY4,lX8,lY8,lResult;
             lX8 = (lX & 0x80000000);
             lY8 = (lY & 0x80000000);
@@ -35,32 +35,32 @@ export const MD5 = function (string) {
             }
     }
  
-    function F(x,y,z) { return (x & y) | ((~x) & z); }
-    function G(x,y,z) { return (x & z) | (y & (~z)); }
-    function H(x,y,z) { return (x ^ y ^ z); }
-    function I(x,y,z) { return (y ^ (x | (~z))); }
+    function F(x: number, y: number, z: number) { return (x & y) | ((~x) & z); }
+    function G(x: number, y: number, z: number) { return (x & z) | (y & (~z)); }
+    function H(x: number, y: number, z: number) { return (x ^ y ^ z); }
+    function I(x: number, y: number, z: number) { return (y ^ (x | (~z))); }
  
-    function FF(a,b,c,d,x,s,ac) {
+    function FF(a: number, b: number, c: number, d: number, x: number, s: number, ac: number) {
             a = AddUnsigned(a, AddUnsigned(AddUnsigned(F(b, c, d), x), ac));
             return AddUnsigned(RotateLeft(a, s), b);
     };
  
-    function GG(a,b,c,d,x,s,ac) {
+    function GG(a: number, b: number, c: number, d: number, x: number, s: number, ac: number) {
             a = AddUnsigned(a, AddUnsigned(AddUnsigned(G(b, c, d), x), ac));
             return AddUnsigned(RotateLeft(a, s), b);
     };
  
-    function HH(a,b,c,d,x,s,ac) {
+    function HH(a: number, b: number, c: number, d: number, x: number, s: number, ac: number) {
             a = AddUnsigned(a, AddUnsigned(AddUnsigned(H(b, c, d), x), ac));
             return AddUnsigned(RotateLeft(a, s), b);
     };
  
-    function II(a,b,c,d,x,s,ac) {
+    function II(a: number, b: number, c: number, d: number, x: number, s: number, ac: number) {
             a = AddUnsigned(a, AddUnsigned(AddUnsigned(I(b, c, d), x), ac));
             return AddUnsigned(RotateLeft(a, s), b);
     };
  
-    function ConvertToWordArray(string) {
+    function ConvertToWordArray(string: string) {
             var lWordCount;
             var lMessageLength = string.length;
             var lNumberOfWords_temp1=lMessageLength + 8;
@@ -83,7 +83,7 @@ export const MD5 = function (string) {
             return lWordArray;
     };
  
-    function WordToHex(lValue) {
+    function WordToHex(lValue: number) {
             var WordToHexValue="",WordToHexValue_temp="",lByte,lCount;
             for (lCount = 0;lCount<=3;lCount++) {
                     lByte = (lValue>>>(lCount*8)) & 255;
@@ -93,7 +93,7 @@ export const MD5 = function (string) {
             return WordToHexValue;
     };
  
-    function Utf8Encode(string) {
+    function Utf8Encode(string: string) {
             string = string.replace(/\r\n/g,"\n");
             var utftext = "";
  
@@ -119,7 +119,7 @@ export const MD5 = function (string) {
             return utftext;
     };
  
-    var x=Array();
+    var x = [] ;
     var k,AA,BB,CC,DD,a,b,c,d;
     var S11=7, S12=12, S13=17, S14=22;
     var S21=5, S22=9 , S23=14, S24=20;
