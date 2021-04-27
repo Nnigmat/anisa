@@ -1,21 +1,22 @@
 {
   "files": {
-    "main.css": "/anisa/static/css/main.6ceed2c2.chunk.css",
-    "main.js": "/anisa/static/js/main.906df16e.chunk.js",
-    "main.js.map": "/anisa/static/js/main.906df16e.chunk.js.map",
-    "runtime-main.js": "/anisa/static/js/runtime-main.574a8da6.js",
-    "runtime-main.js.map": "/anisa/static/js/runtime-main.574a8da6.js.map",
-    "static/css/2.5720c2d5.chunk.css": "/anisa/static/css/2.5720c2d5.chunk.css",
-    "static/js/2.75af495e.chunk.js": "/anisa/static/js/2.75af495e.chunk.js",
-    "static/js/2.75af495e.chunk.js.map": "/anisa/static/js/2.75af495e.chunk.js.map",
-    "static/js/3.8551bf73.chunk.js": "/anisa/static/js/3.8551bf73.chunk.js",
-    "static/js/3.8551bf73.chunk.js.map": "/anisa/static/js/3.8551bf73.chunk.js.map",
+    "main.css": "/anisa/static/css/main.87a3676a.chunk.css",
+    "main.js": "/anisa/static/js/main.1f648c76.chunk.js",
+    "main.js.map": "/anisa/static/js/main.1f648c76.chunk.js.map",
+    "runtime-main.js": "/anisa/static/js/runtime-main.0a2ae85e.js",
+    "runtime-main.js.map": "/anisa/static/js/runtime-main.0a2ae85e.js.map",
+    "static/css/2.c106bf17.chunk.css": "/anisa/static/css/2.c106bf17.chunk.css",
+    "static/js/2.2cbe15ba.chunk.js": "/anisa/static/js/2.2cbe15ba.chunk.js",
+    "static/js/2.2cbe15ba.chunk.js.map": "/anisa/static/js/2.2cbe15ba.chunk.js.map",
+    "static/js/3.0e4ebb8e.chunk.js": "/anisa/static/js/3.0e4ebb8e.chunk.js",
+    "static/js/3.0e4ebb8e.chunk.js.map": "/anisa/static/js/3.0e4ebb8e.chunk.js.map",
     "index.html": "/anisa/index.html",
-    "static/css/2.5720c2d5.chunk.css.map": "/anisa/static/css/2.5720c2d5.chunk.css.map",
-    "static/css/main.6ceed2c2.chunk.css.map": "/anisa/static/css/main.6ceed2c2.chunk.css.map",
-    "static/js/2.75af495e.chunk.js.LICENSE.txt": "/anisa/static/js/2.75af495e.chunk.js.LICENSE.txt",
+    "static/css/2.c106bf17.chunk.css.map": "/anisa/static/css/2.c106bf17.chunk.css.map",
+    "static/css/main.87a3676a.chunk.css.map": "/anisa/static/css/main.87a3676a.chunk.css.map",
+    "static/js/2.2cbe15ba.chunk.js.LICENSE.txt": "/anisa/static/js/2.2cbe15ba.chunk.js.LICENSE.txt",
     "static/media/Icon_type_arrow.css": "/anisa/static/media/arrow-b.9b1d380e.svg",
     "static/media/Icon_type_close.css": "/anisa/static/media/close.a428f336.svg",
+    "static/media/copy.fa5c17eb.svg": "/anisa/static/media/copy.fa5c17eb.svg",
     "static/media/Icon_type_cross.css": "/anisa/static/media/cross-s.b24eae07.svg",
     "static/media/Icon_type_cross-websearch.css": "/anisa/static/media/cross-websearch.50e8fbfd.svg",
     "static/media/Icon_type_filter.css": "/anisa/static/media/filter.c6a6fb88.svg",
@@ -23,10 +24,10 @@
     "static/media/Menu_theme_normal.css": "/anisa/static/media/tip.f4cb635a.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.574a8da6.js",
-    "static/css/2.5720c2d5.chunk.css",
-    "static/js/2.75af495e.chunk.js",
-    "static/css/main.6ceed2c2.chunk.css",
-    "static/js/main.906df16e.chunk.js"
+    "static/js/runtime-main.0a2ae85e.js",
+    "static/css/2.c106bf17.chunk.css",
+    "static/js/2.2cbe15ba.chunk.js",
+    "static/css/main.87a3676a.chunk.css",
+    "static/js/main.1f648c76.chunk.js"
   ]
 }
